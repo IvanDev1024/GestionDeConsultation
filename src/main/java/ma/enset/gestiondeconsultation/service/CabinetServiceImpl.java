@@ -18,8 +18,10 @@ public class CabinetServiceImpl implements CabinetService{
         this.consultationRepository = consultationRepository;
     }
 
+
+
     @Override
-    public void addPatient(Patient patient) {
+    public void savePatient(Patient patient) {
         patientRepository.save(patient);
     }
 
@@ -29,18 +31,24 @@ public class CabinetServiceImpl implements CabinetService{
     }
 
     @Override
-    public java.util.List<Patient> getAllPatients() {
-        return patientRepository.findAll();
+    public Patient getPatientById(Long id) {
+        return patientRepository.findById(id).get();
     }
 
     @Override
-    public void updatePatient(Patient patient) {
-        patientRepository.save(patient);
+    public List<Patient> getAllPatients() {
+        return patientRepository.findAll();
     }
+
 
     @Override
     public void deletePatient(Patient patient) {
         patientRepository.delete(patient);
+    }
+
+    @Override
+    public void deletePatientsById(Long id) {
+        patientRepository.deleteById(id);
     }
 
     @Override
@@ -51,5 +59,10 @@ public class CabinetServiceImpl implements CabinetService{
     @Override
     public List<Consultation> getAllConsultations() {
         return (List<Consultation>) consultationRepository.findAll();
+    }
+
+    @Override
+    public void deletePatientById(Long id) {
+
     }
 }
